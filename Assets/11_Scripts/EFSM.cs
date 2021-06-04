@@ -46,7 +46,7 @@ public class EFSM : MonoBehaviour
     int maxHp = 15; //**8주차 추가 부분
     float yVelocity;
 
-    public Slider hpSlider; // slider오브젝트를 담기 위한 변수 선언 **8주차 추가 부분
+    //public Slider hpSlider; // slider오브젝트를 담기 위한 변수 선언 **8주차 추가 부분
 
     void Start()
     {
@@ -67,9 +67,11 @@ public class EFSM : MonoBehaviour
 
             case EnemyState.Idle:
                 Idle();
+                ani.SetBool("Move", false);
                 break;
             case EnemyState.Move:
                 Move();
+                ani.SetBool("Move", true);
                 break;
             case EnemyState.Attack:
                 Attack();
@@ -86,7 +88,7 @@ public class EFSM : MonoBehaviour
 
         }
 
-        hpSlider.value = (float)hp / (float)maxHp;
+        //hpSlider.value = (float)hp / (float)maxHp;
     }
 
 
@@ -95,7 +97,6 @@ public class EFSM : MonoBehaviour
         if (Vector3.Distance(transform.position, player.position) < findDistance) // 적과 Player사이의 거리가 8f 이내라면 Move로 전환
         {
             m_State = EnemyState.Move;
-            ani.SetBool("Move", true);
             print("상태 전환: Idle -> Move");
         }
 
@@ -162,7 +163,6 @@ public class EFSM : MonoBehaviour
             if (transform.position == originPos)
             {
             m_State = EnemyState.Idle;
-                ani.SetBool("Move", false);
                 print("상태 전환: Return -> Idle");
             }
         }

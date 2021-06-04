@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class is_PlayerShooting : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class is_PlayerShooting : MonoBehaviour
     public float reloadTime = 1.5f;
     //public float DelayTime = 0.5f;
     public bool isReroading = false;
+    public GameObject Amo_Label;
+    Text Ammo_rest;
 
     public enum State
     {
@@ -136,9 +139,11 @@ public class is_PlayerShooting : MonoBehaviour
 
     void Start()
     {
+        Ammo_rest = Amo_Label.GetComponent<Text>();
         ani = GetComponentInChildren<Animator>();
         gunState = State.Ready;
         magAmmo = MaxAmmo;
+        
         //피격 이펙트 오브젝트에서 파티클 시스템 컴포넌트 가져오기
         ps = bulletEffect.GetComponent<ParticleSystem>();
         ps2 = bloodEffect.GetComponent<ParticleSystem>();
@@ -156,6 +161,10 @@ public class is_PlayerShooting : MonoBehaviour
         {
             checkReload();
         }
+
+        string R_Ammo =RemainAmmo.ToString();
+        string Ammo = magAmmo.ToString();
+        Ammo_rest.text ="bullet : " + Ammo + " / " + R_Ammo ;
 
     }
 

@@ -34,6 +34,7 @@ public class PlayerMove : MonoBehaviour
 
     void Start()
     {
+        maxHp = hp;
         Ani = GetComponentInChildren<Animator>();
         //캐릭터 콘트롤러 컴포넌트 받아오기
         cc = GetComponent<CharacterController>();

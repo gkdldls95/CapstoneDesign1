@@ -29,10 +29,10 @@ public class is_GManager : MonoBehaviour
 
     // 게임 상태 UI 오브젝트 변수
     public GameObject gameLabel;
-
+    public GameObject EN_Label;
     // 게임 상태 UI 텍스트 컴포넌트 변수
     Text gameText;
-
+    Text EN_rest;
     // PlayerMove 클래스 변수
     PlayerMove player;
 
@@ -43,13 +43,11 @@ public class is_GManager : MonoBehaviour
 
         // 게임 상태 UI 오브젝트에서 Text 컴포넌트를 가져온다.
         gameText = gameLabel.GetComponent<Text>();
-
+        EN_rest = EN_Label.GetComponent<Text>();
         // "준비 텍스트 출력"
         gameText.text = "준비!";
-
         // 텍스트 색 조절
         gameText.color = new Color32(153, 255, 0, 153); //글자 색 변경 가능
-
         // 게임 상태 준비에서 Run으로 바꿈
         StartCoroutine(ReadyToStart());
         
@@ -124,6 +122,8 @@ public class is_GManager : MonoBehaviour
         {
             StartCoroutine(clear());
         }
+        string restNum = EnemyNum.ToString();
+        EN_rest.text = "남은 적의 수 : " + restNum;
     }
 
 
